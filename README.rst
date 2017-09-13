@@ -127,7 +127,7 @@ Fork, clone and create a virtualenv.  Then run::
 
 Run tests with::
 
-    ./runtests.py
+    python manage.py test tests
 
 Please submit pull requests using 'develop' as the target branch.
 

@@ -1,7 +1,5 @@
-from django.template.response import TemplateResponse
-from django.template import Template
-
+from django.template import Template, RequestContext
+from django.http import HttpResponse
 
 def index(request):
-    t = Template("")
-    return TemplateResponse(request, t, {'a': 1000})
+    return HttpResponse(Template("").render(RequestContext(request, {'a': 1000})))

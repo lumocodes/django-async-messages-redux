@@ -1,8 +1,17 @@
 language: python
 python:
-  - 2.6
   - 2.7
+env:
+  - DJANGO="django>=1.4,<1.5"
+  - DJANGO="django>=1.5,<1.6"
+  - DJANGO="django>=1.6,<1.7"
+  - DJANGO="django>=1.7,<1.8"
+  - DJANGO="django>=1.8,<1.9"
+  - DJANGO="django>=1.9,<1.10"
+  - DJANGO="django>=1.10,<1.11"
+  - DJANGO="django>=1.11,<2.0"
 install:
-script:
+  - pip install ${DJANGO}
   - python setup.py develop
-  - ./runtests.py
+script:
+  - python manage.py test tests
