@@ -1,7 +1,4 @@
-from distutils.version import StrictVersion
-
 from django.contrib import messages
-from django.utils.version import get_version
 
 from async_messages import get_messages
 
