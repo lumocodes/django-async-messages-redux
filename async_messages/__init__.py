@@ -2,6 +2,10 @@ from django.core.cache import cache
 from django.contrib.messages import constants
 
 
+class AsyncMessageException(Exception):
+    pass
+
+
 def message_user(user, message, level=constants.INFO):
     """
     Send a message to a particular user.
@@ -12,6 +16,10 @@ def message_user(user, message, level=constants.INFO):
     """
     # We store a list of messages in the cache so we can have multiple messages
     # queued up for a user.
+
+    if user.id is None:
+        raise AsyncMessageException('Anonymous users cannot send messages.')
+
     user_key = _user_key(user)
     messages = cache.get(user_key) or []
     messages.append((message, level))
@@ -36,6 +44,9 @@ def get_messages(user):
 
     :param user: User instance
     """
+    if user.id is None:
+        return None
+
     key = _user_key(user)
     result = cache.get(key)
     if result:
