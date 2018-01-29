@@ -1,9 +1,12 @@
+from django.contrib import auth
+from django.contrib.auth.models import User
+from django.contrib.messages import constants
 from django.test import TestCase
 from django.test.client import Client
-from django.contrib.auth.models import User
-from django.contrib.messages import constants, set_level
 
-from async_messages import message_user, message_users, messages
+from async_messages import (
+    message_user, message_users, messages, AsyncMessageException,
+)
 
 
 class MiddlewareTests(TestCase):
@@ -43,6 +46,16 @@ class AnonynousUserTests(TestCase):
         response = client.get('/')
         msgs = list(response.context['messages'])
         self.assertEqual(0, len((msgs)))
+
+    def test_anonymous_message(self):
+        client = Client()
+        user = auth.get_user(client)
+
+        with self.assertRaises(AsyncMessageException) as e:
+            message_user(user, "Second Message")
+
+        self.assertEqual(str(e.exception),
+                         'Anonymous users cannot send messages.')
 
 
 class TestMessagesApi(TestCase):
