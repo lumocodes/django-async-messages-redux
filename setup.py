@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
 
-setup(name='django-async-messages',
+setup(name='django-async-messages-redux',
       version='0.4.0',
       url='https://github.com/maurizi/django-async-messages',
       author='Michael Maurizi',
