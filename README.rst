@@ -1,8 +1,9 @@
-=====================
-django-async-messages
-=====================
+===========================
+django-async-messages-redux
+===========================
 
 Simple asynchronous messages for django.  Plays nicely with Celery.
+Fork of https://github.com/codeinthehole/django-async-messages
 
 Questions
 =========
@@ -30,26 +31,13 @@ and submit them to `Django's messaging framework`_.  All very simple.
 
 .. _`Django's messaging framework`: https://docs.djangoproject.com/en/dev/ref/contrib/messages/
 
-Aren't there other libraries that do this?
-------------------------------------------
-
-Yes, there are - but they solve the problem in different ways:
-
-* `django-offline-messages`_ - this provides an alternative storage backend that
-  Django's messages framework can use.
-
-* `django-notifications`_  
-
-.. _`django-offline-messages`: https://github.com/dym/django-offline-messages
-.. _`django-notifications`: https://github.com/jtauber/django-notification
-
 What's good about this implementation?
 --------------------------------------
 
-* It's simple, fast and easy to use.  
+* It's simple, fast and easy to use.
 * It works cohesively with existing Django cache and messages framework.  It
   will work no matter what cache backend your are using, and whatever storage
-  backend is used for messages. 
+  backend is used for messages.
 
 What's bad?
 -----------
@@ -62,13 +50,9 @@ Install
 
 From PyPI (stable)::
 
-    pip install django-async-messages
+    pip install django-async-messages-redux
 
-From Github (unstable)::
-
-    pip install git+git://github.com/codeinthehole/django-async-messages#egg=djang-async-messages
-
-Add ``'async_messages.middleware.AsyncMiddleware'`` to your ``MIDDLEWARE_CLASSES``.
+Add ``'async_messages.middleware.AsyncMiddleware'`` to your ``MIDDLEWARE`` or ``MIDDLEWARE_CLASSES``.
 Ensure it comes after ``'django.contrib.messages.middleware.MessageMiddleware'``.
 
 You need to have ``CACHES`` configured in you settings for this to work.  As usual,
@@ -140,6 +124,10 @@ MIT_
 
 Changelog
 =========
+
+0.4.0
+-----
+* Forked, added support for up to Django 1.11
 
 0.3.1
 -----
