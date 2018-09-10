@@ -21,8 +21,9 @@ INSTALLED_APPS = [
     'tests'
 ]
 
-if django.VERSION[0] == 1 and django.VERSION[1] < 10:
-    MIDDLEWARE_CLASSES = (
+
+if django.VERSION >= (1, 10):
+    MIDDLEWARE = (
         'django.middleware.common.CommonMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
@@ -31,7 +32,7 @@ if django.VERSION[0] == 1 and django.VERSION[1] < 10:
         'async_messages.middleware.AsyncMiddleware'
     )
 else:
-    MIDDLEWARE = (
+    MIDDLEWARE_CLASSES = (
         'django.middleware.common.CommonMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
