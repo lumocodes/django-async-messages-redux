@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 
 setup(name='django-async-messages-redux',
-      version='0.4.0',
+      version='0.4.1',
       url='https://github.com/maurizi/django-async-messages',
       author='Michael Maurizi',
       author_email='michael@maurizi.org',

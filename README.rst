@@ -125,6 +125,10 @@ MIT_
 Changelog
 =========
 
+0.4.1
+-----
+* Improvements to Django 2+ and Python 3+ support
+
 0.4.0
 -----
 * Forked, added support for up to Django 2.0
