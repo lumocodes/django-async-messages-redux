@@ -3,7 +3,7 @@ install:
 	pip install -r requirements.txt
 
 test:
-	./runtests.py
+	python manage.py test
 
 release:
 	git checkout master
