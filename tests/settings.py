@@ -55,6 +55,7 @@ if django.VERSION >= (1, 8):
                 'context_processors': [
                     # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
                     # list if you haven't customized them:
+                    'django.template.context_processors.request',
                     'django.contrib.auth.context_processors.auth',
                     'django.template.context_processors.debug',
                     'django.template.context_processors.i18n',

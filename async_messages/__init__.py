@@ -56,4 +56,4 @@ def get_messages(user):
 
 
 def _user_key(user):
-    return '_async_message_%d' % user.uuid
+    return '_async_message_{}'.format(user.pk)

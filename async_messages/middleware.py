@@ -1,27 +1,21 @@
-from distutils.version import StrictVersion
-
 from django.contrib import messages
 
-try:
-    from django.utils.version import get_version
-except ImportError:
-    from django import VERSION as DJANGO_VERSION
-
-    def get_version():
-        return ".".join(str(n) for n in DJANGO_VERSION[:3])
+from django import VERSION as DJANGO_VERSION
 
 from async_messages import get_messages
 
-if StrictVersion(get_version()) >= StrictVersion("1.10.0"):
-    from django.utils.deprecation import MiddlewareMixin as _MiddlewareBase
-
-    def _is_user_authenticated(user):
-        return bool(user.is_authenticated)
-else:
-    _MiddlewareBase = object
-
+if DJANGO_VERSION < (1, 10, 0):
     def _is_user_authenticated(user):
         return user.is_authenticated()
+else:
+    def _is_user_authenticated(user):
+        return bool(user.is_authenticated)
+
+if (1, 10, 0) <= DJANGO_VERSION < (4, 0, 0):
+    from django.utils.deprecation import MiddlewareMixin as _MiddlewareBase
+
+else:
+    _MiddlewareBase = object
 
 
 class AsyncMiddleware(_MiddlewareBase):

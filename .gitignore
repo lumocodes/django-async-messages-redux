@@ -2,3 +2,4 @@ dist
 build/
 django_async_messages_redux.egg-info/
 *.pyc
+.idea

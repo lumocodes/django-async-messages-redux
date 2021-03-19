@@ -1,0 +1,9 @@
+exclude: 'docs|node_modules|migrations|.git|.tox|venv|.env'
+default_stages: [commit]
+fail_fast: true
+
+repos:
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.10.1
+    hooks:
+      - id: pyupgrade

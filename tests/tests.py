@@ -21,14 +21,14 @@ class MiddlewareTests(TestCase):
         message_user(self.user, "Hello")
         response = self.client.get('/')
         msgs = list(response.context['messages'])
-        self.assertEqual(1, len((msgs)))
+        self.assertEqual(1, len(msgs))
         self.assertEqual('Hello', str((msgs)[0]))
 
     def test_message_appears_all_users(self):
         message_users(User.objects.all(), "Hello")
         response = self.client.get('/')
         msgs = list(response.context['messages'])
-        self.assertEqual(1, len((msgs)))
+        self.assertEqual(1, len(msgs))
         self.assertEqual('Hello', str((msgs)[0]))
 
     def test_message_queue(self):
@@ -36,7 +36,7 @@ class MiddlewareTests(TestCase):
         message_user(self.user, "Second Message")
         response = self.client.get('/')
         msgs = list(response.context['messages'])
-        self.assertEqual(2, len((msgs)))
+        self.assertEqual(2, len(msgs))
         self.assertEqual('Second Message', str((msgs)[1]))
 
 
@@ -45,7 +45,7 @@ class AnonynousUserTests(TestCase):
         client = Client()
         response = client.get('/')
         msgs = list(response.context['messages'])
-        self.assertEqual(0, len((msgs)))
+        self.assertEqual(0, len(msgs))
 
     def test_anonymous_message(self):
         client = Client()
@@ -68,7 +68,7 @@ class TestMessagesApi(TestCase):
     def assertMessageOk(self, level):
         response = self.client.get('/')
         msgs = list(response.context['messages'])
-        self.assertEqual(1, len((msgs)))
+        self.assertEqual(1, len(msgs))
         self.assertEqual('Hello', str((msgs)[0]))
 
     def test_info(self):
@@ -93,4 +93,4 @@ class TestMessagesApi(TestCase):
         # messages (this can be changed using set_level)
         response = self.client.get('/')
         msgs = list(response.context['messages'])
-        self.assertEqual(0, len((msgs)))
+        self.assertEqual(0, len(msgs))
